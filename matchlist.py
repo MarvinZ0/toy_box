@@ -45,8 +45,8 @@ class FuzzyMatch(object):
             if keys == None:
                 return 0
             else:
-                branch_1 = self.match_rank(keys[0],data,oringinal_size)
-                branch_2 = self.match_rank(keys[1],data,oringinal_size)
+                branch_1 = self.match_rank(keys[0],data,oringinal_size+2)
+                branch_2 = self.match_rank(keys[1],data,oringinal_size+2)
                 return branch_1 if branch_1 else branch_2 if branch_2 else 0
 
     def fuzzy_match(self,word="jeff",listdata=email_list):
@@ -59,12 +59,13 @@ class FuzzyMatch(object):
             result.update({list:round(self.match_rank(word,list_extract,float(len(word))),2)})
         result = sorted(result.iteritems(), key=lambda d:d[1], reverse=True) # 对字典的value值排序
         t_end = round(time()-t_start,2)
-        return result, "It takes %s s for matching"%t_end
+        return result, t_end
 
-    def pretty_print(self,dic):
+    def pretty_print(self,dic,time):
         for key, value in dic:
             if value >= 0.5 :
                 print 'Key : ',key,'        ','Value :',value
+        print "It takes %s s for matching"%t_end
         return 'Done'
 
 
