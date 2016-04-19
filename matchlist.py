@@ -153,7 +153,7 @@ class FuzzyMatch(object):
         for key, value in dic:
             if value >= 0.5 :
                 print 'Key : ',key,'        ','Value :',value
-        print "It takes %s s for matching"%t_end
+        print "It takes %s s for matching"%time
         return 'Done'
 
 
